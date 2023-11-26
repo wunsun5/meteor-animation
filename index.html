@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meteor Animation</title>
+    <style>
+        body{
+            min-height: 100vh;
+            background-color: black;
+            transform: rotate(20deg);
+            overflow: hidden;
+        }
+
+        span{
+            position: absolute;
+            background: linear-gradient(transparent, white);
+            height: 180px;
+            border-radius: 0 0 5px 5px;
+            animation: raining 5s linear infinite;
+        }
+
+        @keyframes raining {
+            from{
+                transform: translateY(-180px);
+            }
+            to{
+                transform: translateY(calc(100vh + 180px));
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function meteor(){
+            const amount = 70;
+
+            for(let i = 0; i < amount; i++){
+                const meteor = document.createElement('span');
+                let size = Math.random() * 5;
+                let delay = Math.random() * 18;
+                let positionX = Math.random() * window.innerWidth;
+
+                meteor.style.animationDuration = `${size}s`;
+                meteor.style.animationDelay = `${-delay}s`;
+                meteor.style.width = `${size}px`;
+                meteor.style.left = `${positionX}px`;
+
+                document.body.append(meteor);
+            }
+
+        }
+
+        meteor()
+    </script>
+</body>
+</html>
